@@ -18,7 +18,8 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
         separateFiles: false,
-        prefix: 'pure-'
+        prefix: 'pure-',
+        flatten:false
     });
 
     var createOutput = function(srcFiles, css, dest) {
@@ -33,7 +34,11 @@ module.exports = function(grunt) {
       if (ext) {
           destFile = dest;
       } else {
-          destFile = dest + '/' + options.prefix + path.basename(css); 
+          if (options.flatten) {
+            destFile = dest + '/' + options.prefix + path.basename(css);   
+          } else {
+            destFile = dest + '/' + path.dirname(css) + '/' + options.prefix + path.basename(css);
+          }
       }
 
       grunt.file.write(path.normalize(destFile), pure);

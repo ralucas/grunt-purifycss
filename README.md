@@ -47,13 +47,15 @@ grunt.initConfig({
 ```
 
 In this example, options are set to separateFiles with a prefix.  Please note, a destination folder is still expected, but a filename should not be included.
+you can now generate separateFiles in same source's folder layout 
 
 ```js
 grunt.initConfig({
   purifycss: {
     options: {
       separateFiles: true,
-      prefix: 'purifiedcss-'
+      prefix: 'purifiedcss-',
+      flatten: flase
     },
     target: {
       src: ['test/fixtures/*.html', 'test/fixtures/*.js'],
